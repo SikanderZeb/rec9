@@ -1,0 +1,6 @@
+framework module Pods_Rec9 {
+  umbrella header "Pods-Rec9-umbrella.h"
+
+  export *
+  module * { export * }
+}
