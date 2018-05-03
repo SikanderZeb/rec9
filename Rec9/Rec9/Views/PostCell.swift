@@ -22,7 +22,7 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var comments: UILabel!
     @IBOutlet weak var views: UILabel!
     
-    var playerController : AVPlayerViewController? = nil
+    
     var passedURL : URL! = nil
     var indexPath : IndexPath! = nil
     var delegate : PostCellProtocol? = nil
@@ -30,9 +30,7 @@ class PostCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        playerController = AVPlayerViewController()
-        playerController?.view.frame = videoView.bounds
-        videoView.addSubview((playerController?.view)!)
+        
     }
     
     func configCell(with post : Post, shouldPlay : Bool) {
@@ -45,29 +43,8 @@ class PostCell: UITableViewCell {
         }
         
         
-        if (post.video != "") {
-            let url = URL(string: post.video)
-            self.passedURL = url
-            if shouldPlay == true {
-                let player = AVPlayer(url: url!)
-                if self.playerController == nil {
-                    playerController = AVPlayerViewController()
-                }
-                
-                playerController?.player = player
-                playerController?.showsPlaybackControls = true
-                playerController?.player?.play()
-            }
-            else {
-                if self.playerController != nil {
-                    self.playerController?.player?.pause()
-                    self.playerController?.player = nil
-                }
-                //show video thumbnail with play button on it.
-            }
-        }
-        self.username.text = post.user?.name
-        self.caption.text = post.caption
+        //self.username.text = post.user?.name
+        //self.caption.text = post.caption
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -83,7 +60,6 @@ class PostCell: UITableViewCell {
     
     override func prepareForReuse() {
         //this way once user scrolls player will pause
-        self.playerController?.player?.pause()
-        self.playerController?.player = nil
+        
     }
 }

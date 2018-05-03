@@ -15,9 +15,9 @@ class SearchVC: BaseVC {
     var postArray:[Post] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.tabBar.unselectedItemTintColor = UIColor.white
-        self.tabBarController?.tabBar.itemWidth = self.view.bounds.size.width/2
-        self.tabBarController?.tabBar.selectionIndicatorImage = UIImage(named: "tabbg_selected")
+//        self.tabBarController?.tabBar.unselectedItemTintColor = UIColor.white
+//        self.tabBarController?.tabBar.itemWidth = self.view.bounds.size.width/2
+//        self.tabBarController?.tabBar.selectionIndicatorImage = UIImage(named: "tabbg_selected")
     
     }
 
@@ -51,8 +51,12 @@ class SearchVC: BaseVC {
 }
 
 extension SearchVC: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postArray.count
+        return 15//postArray.count
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -60,7 +64,7 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
         //cell.delegate = self
         //let the cell know its indexPath
         cell.indexPath = indexPath
-        cell.configCell(with: postArray[indexPath.row], shouldPlay: false)
+        //cell.configCell(with: postArray[indexPath.row], shouldPlay: false)
         return cell
     }
     
